@@ -5,70 +5,96 @@
         <title>fe01 - 2021 SANs Bootup CTF</title>
     </head>
     <body>
-<div id="menu">
-    <div id="pageTitle"><h1> c1cada@insec </h1></div>
-    <div id="menuLinks"><hr>
-        <a href="../index.html"><b>Index</b></a> | 
-        <a href="../be01/be01.html">be01</a> | 
-        <a href="../be03/be03.html">be03</a> | 
-        <a href="../ce01/ce01.html">ce01</a> | 
-        <a href="../ce02/ce02.html">ce02</a> | 
-        <a href="../ce03/ce03.html">ce03</a> | 
-        <a href="../ch01/ch01.html">ch01</a> | 
-        <a href="../fe01/fe01.html">fe01</a> | 
-        <a href="../fe02/fe02.html">fe02</a> | 
-        <a href="../fe03/fe03.html">fe04</a> |
-        <a href="../fe04/fe04.html">fe04</a> |
-        <a href="../fm01/fm01.html">fm01</a> | 
-        <a href="../fm02/fm02.html">fm02</a> | 
-        <!-- <a href="../fh01/fh01.html">fh01</a> | Couldn't solve this one either! -->
-        <a href="../we01-1/we01-1.html">we01-1</a> | 
-        <a href="../we01/we01.html">we01</a> | 
-        <a href="../we02/we02.html">we02</a> | 
-        <a href="../we03/we03.html">we03</a> | 
-        <a href="../wm01/wm01.html">wm01</a> | 
-        <a href="../wm02/wm02.html">wm02</a>
-    <hr></div>
-</div>
+        <div id="menu">
+            <div id="pageTitle"><h1> c1cada@insec </h1></div>
+            <div id="menuLinks"><hr>
+                <a href="../index.html"><b>Index</b></a> | 
+                <a href="../be01/be01.html">be01</a> | 
+                <a href="../be03/be03.html">be03</a> | 
+                <a href="../ce01/ce01.html">ce01</a> | 
+                <a href="../ce02/ce02.html">ce02</a> | 
+                <a href="../ce03/ce03.html">ce03</a> | 
+                <!-- <a href="../ch01/ch01.html">ch01</a> | -->
+                <a href="../fe01/fe01.html">fe01</a> | 
+                <a href="../fe02/fe02.html">fe02</a> | 
+                <a href="../fe03/fe03.html">fe03</a> |
+                <a href="../fe04/fe04.html">fe04</a> |
+                <a href="../fm01/fm01.html">fm01</a> | 
+                <!-- <a href="../fm02/fm02.html">fm02</a> | -->
+                <!-- <a href="../fh01/fh01.html">fh01</a> | -->
+                <a href="../we01-1/we01-1.html">we01-1</a> | 
+                <a href="../we01/we01.html">we01</a> | 
+                <a href="../we02/we02.html">we02</a> | 
+                <a href="../we03/we03.html">we03</a> | 
+                <a href="../wm01/wm01.html">wm01</a> | 
+                <a href="../wm02/wm02.html">wm02</a>
+            <hr></div>
+        </div>
 
-<div id="body">
-The challenge asks you to download a file, fe03.zip with no other information.
-Upon downloading it, I tried unzipping it with unzip...no luck, only errors
-After a bit of googling, 7za x 'filename' should work to open the file.
-Success! Except that the file is password protected.
-In comes Zydra, a python script based on the idea of Hydra, only for zipped files.
-Combine Zydra with the Rockyou.txt list! That is sure to crack most things in a CTF.
-Ok. The python script is giving an error about utf-8 encoding. Let's return to google.
-Conveniently, there are others who had the same issue on the GitHub page for Zydra.
-<a href='https://github.com/hamedA2/Zydra/issues/10'>GitHub Solution</a>
-Thank you, mlowczynski! <a href='https://github.com/mlowczynski'>
-Just a little code altering in the script; changing open(dict_file, "r") to open(dict_file, encoding='utf-8', errors='ignore')
-    at all the points it occurs in the script. Save time by using the vim search feature. (/'search string')
-Save and exit! :wq!
-Success once more! Zydra is working perfectly.
-<img src='fe0301.png'>
-Waiting...
-Waiting...
-Waiting...
-Waiting...Rockyou really is a long list...Let's hope it gets longer!
+        <div id="body">
 
-Ok. So this isn't working.
-Should have tried this to begin with: John The Ripper!
-zip2john flag.zip > hash.txt
-john --filetype=zip hash.txt
+            <div><h2>FE01</h2></div>
 
-<img src='fe0302.PNG'>
-John doing it's magic.
+            <div id="text">
+                <p>The challenge asks you to download a file, <a href="fe03.zip">fe03.zip</a>  with no other information.</p>
+                <p>Upon downloading it, I tried unzipping it with unzip...no luck, only errors.</p>
+                <p>After a bit of googling, 7za x 'filename' should work to open the file.</p>
+                <p>Success! Except that the file is password protected.</p>
+                <p>In comes Zydra, a python script based on the idea of Hydra, only for zipped files.</p>
+                <p>Combine Zydra with the Rockyou.txt list! That is sure to crack most things in a CTF.</p>
+                <p>Ok. The python script is giving an error about utf-8 encoding. Let's return to google.</p>
+                <p>Conveniently, there are others who had the same issue on the GitHub page for Zydra.</p>
+                <p><a href='https://github.com/hamedA2/Zydra/issues/10'>GitHub Solution</a> to the encoding problem. Thank you, <a href='https://github.com/mlowczynski'>mlowczynski</a>!</p>
+                <p>Just a little code altering in the script; changing <code>open(dict_file, "r")</code><br>
+                    to <code>open(dict_file, encoding='utf-8', errors='ignore')</code><br>
+                    at all the points it occurs in the script. Save time by using the vim search feature. (/&lt;search string&gt;)</p>
+                <p>Save and exit! <code>:wq!</code></p>
+                <p>Success once more! Zydra is working perfectly.</p>
+            </div>
 
-<img src='fe0303.PNG'>
-Super fast this time! We have a match.
+            <div id="image"></div><img src='fe0101.png'></div>
 
-Unzip the file:
-<img src='fe0304.PNG'>
+            <div id="text">
+                <p>Waiting...</p>
+                <p>Waiting...</p>
+                <p>Waiting...Rockyou really is a long list...</p>
+                <p>Ok. So this isn't working. False leads happen all the time in this field, especially for the inexperienced.</p>
+                <p><u>The thing is, you can't give up. There's always another way.</u></p>
+                <p>Should have tried this to begin with: John The Ripper!</p>
+                <p><code>zip2john flag.zip > hash.txt</code> Hash time!</p>
+                <p><code>john --filetype=zip hash.txt</code></p>
+            </div>
 
-Success this time!
-cat that flag file!
-<img src='fe0305.PNG'>
+            <div id="image"><img src='fe0102.PNG'></div>
 
-We have the flag!
+            <div id="text"><p>John doing it's magic.</p></div>
+
+            <div id="image"><img src='fe0103.PNG'></div>
+
+            <div id="text">
+                <p>Super fast this time! We have a match.</p>
+                <p>Unzip the file:</p>
+            </div>
+
+            <div id="image"><img src='fe0104.PNG'></div>
+
+            <div id="text"><p>Success this time! <code>cat</code> that flag file!</p></div>
+
+            <div id="image"><img src='fe0105.PNG'></div>
+
+            <div id="text"><p>We have the flag!</p></div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
 
